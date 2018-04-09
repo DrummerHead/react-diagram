@@ -28,10 +28,11 @@ type ArrowBodyProps = {
   points: string,
   id: EntityId,
   label: ?string,
+  lineColor: ?string,
 };
-const ArrowBody = ({ points, id, label }: ArrowBodyProps) => (
+const ArrowBody = ({ points, id, label, lineColor }: ArrowBodyProps) => (
   <g>
-    <Line d={points} id={`line${id}`} />
+    <Line style={{ stroke: lineColor }} d={points} id={`line${id}`} />
     <InteractionLine d={points} />
     {label && (
       <text dy="-.25rem">
@@ -68,6 +69,7 @@ const ArrowBodyContainer = (props: ArrowBodyContainerProps) => (
             key={link.target}
             id={link.target}
             label={link.label}
+            lineColor={link.lineColor}
             points={pointsToString(link.points)}
           />
         )
